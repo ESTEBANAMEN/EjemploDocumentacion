@@ -1,39 +1,87 @@
-# Ejemplo Documentación 
+# Documentación
 ![Tinkercad](./img/ArduinoTinkercad.jpg)
 
 
-## Integrantes 
-- Esteban Marcelo Quiroz 
-- Dario Cuda 
+## Integrante 
+- Esteban Juan Amén
 
 
-## Proyecto: Contador binario.
-![Tinkercad](./img/ContadorBinario.png)
+## Proyecto: Detector presencia de SUBTE en estaciones.
+![Tinkercad](./img/estacionesDeSubte.png)
 
 
 ## Descripción
-En este parrafo deberan describir que funcion cumple su proyecto. Que solucion esta ofreciendo.
+Este proyecto, comprende lo dicho en el apartado anterior. Su función representa un sistema que detecta, mediante señalizaciones visuales y alrmas, la presencia de una formación "SUBTE" en las distintas estaciones ofrecidas en el mismo.
 
 ## Función principal
-Esta funcion se encarga de encender y apagar los leds.
+Como podemos ver más abajo, se definen los pines con "nobres" a utilizar a lo largo del código. En el apartado de "setup", configuramos los pines y en el "loop" generamos el codigo que va a inetractuar con la función principal (estacionesDeSubte), cuyo conjunto nos servirá para encender los led, el visualizador y el buzzer, interactuando con el encendido o apagado (con reset) por medio del interruptor.
 
-B0, B1, B2, B3 son #define que utilizamos para agregar los leds, asociandolo a pines de la placa arduino.
+~~~ C++ (lenguaje en el que esta escrito)
+#define rojo 13
+#define verde 12
+#define amarillo 11
+#define blanco 10
+#define A 7
+#define B 8
+...(más codigo)
+#define alarma A0
+#define interruptor 9
 
-(Breve explicación de la función)
-
-~~~ C (lenguaje en el que esta escrito)
-void EncenderBinario(int estado3, int estado2,int estado1,int estado0)
+void setup()
 {
-  digitalWrite(B3,estado3);
-  digitalWrite(B2,estado2);
-  digitalWrite(B1,estado1);
-  digitalWrite(B0,estado0);
+  pinMode(rojo, OUTPUT);
+  pinMode(verde, OUTPUT);
+  pinMode(amarillo, OUTPUT);
+  pinMode(blanco, OUTPUT);
+  pinMode(A, OUTPUT);
+  pinMode(B, OUTPUT);
+  ...(más codigo)
 }
+
+void loop()
+{
+  int valorEntrada = digitalRead(interruptor);
+  Serial.println(valorEntrada);
+  delay(1000);
+
+  if(valorEntrada == 1){
+     switch (contador)
+  	{
+      case 0:
+          estacionesDeSubte(contador);
+      case 1:
+          estacionesDeSubte(contador);
+      case 2:
+          estacionesDeSubte(contador);
+      case 3:
+          estacionesDeSubte(contador);
+  ...(más codigo)}
+
+  void estacionesDeSubte(int numero) {
+  switch(numero)
+  {
+  	case 0:
+    	digitalWrite(A,HIGH);
+    	digitalWrite(B,HIGH);
+    	digitalWrite(C,HIGH);
+    	digitalWrite(D,HIGH);
+    	digitalWrite(E,HIGH);
+    	digitalWrite(F,HIGH);
+    	digitalWrite(G,LOW);
+    	digitalWrite(rojo,LOW);
+    	digitalWrite(verde,LOW);
+    	digitalWrite(amarillo,LOW);
+    	digitalWrite(blanco,HIGH);
+    	tone(alarma, 220);
+  		delay(50);
+  		noTone(alarma);
+    	break;
+  ...(más codigo)}
 ~~~
 
-## :robot: Link al proyecto
-- [proyecto](https://www.tinkercad.com/things/aOYiibnDjWu)
-## :tv: Link al video del proceso
+## Link al proyecto
+- [proyecto](https://www.tinkercad.com/things/9X4sj9bSeoa)
+## Link al video del proceso
 - [video](https://www.youtube.com/watch?v=VyGjE8kx-O0)
 
 ---
